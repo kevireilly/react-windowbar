@@ -82,3 +82,7 @@
 .tb-win .titlebar-close:hover svg polygon {
 	fill: #fff;
 }
+
+.tb-win.unfocused .titlebar-controls:not(:hover) svg {
+	opacity: 60%;
+}

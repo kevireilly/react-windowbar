@@ -114,3 +114,8 @@
 	opacity: 0;
 	display: none;
 }
+
+.tb-mac.unfocused .titlebar-controls:not(:hover) > * {
+	background-color: #dcdcdc;
+	border-color: #d0d0d0;
+}
