@@ -1,6 +1,6 @@
 {
-	"name": "titlebar",
-	"version": "1.6.0",
+	"name": "windowbar",
+	"version": "1.6.1",
 	"description": "Emulated window controls",
 	"main": "index.js",
 	"scripts": {
@@ -9,19 +9,20 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/katacarbix/titlebar"
+		"url": "https://github.com/katacarbix/windowbar"
 	},
 	"keywords": [
 		"osx",
 		"window",
+		"controls",
 		"titlebar",
 		"stoplight"
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/katacarbix/titlebar/issues"
+		"url": "https://github.com/katacarbix/windowbar/issues"
 	},
-	"homepage": "https://github.com/katacarbix/titlebar",
+	"homepage": "https://github.com/katacarbix/windowbar",
 	"dependencies": {
 		"brfs": "^1.4.0",
 		"component-classes": "^1.2.6",

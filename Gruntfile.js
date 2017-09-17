@@ -18,7 +18,7 @@ module.exports = function(grunt){
 				],
 				extensions: '.js',
 				browserifyOptions: {
-					standalone: 'titlebar'
+					standalone: 'windowbar'
 				}
 			},
 			default: {

@@ -1,4 +1,4 @@
-.titlebar {
+.windowbar {
 	display: flex;
 	box-sizing: padding-box;
 	
@@ -13,21 +13,21 @@
 	&.draggable {
 		-webkit-app-region: drag;
 		
-		.titlebar-minimize,
-		.titlebar-maximize,
-		.titlebar-close {
+		.windowbar-minimize,
+		.windowbar-maximize,
+		.windowbar-close {
 			-webkit-app-region: no-drag;
 		}
 	}
 	
-	.titlebar-controls::after {
+	.windowbar-controls::after {
 		content: ' ';
 		display: table;
 		clear: both;
 	}
 	
 	
-	&.tb-mac {
+	&.wb-mac {
 		align-items: center;
 		justify-content: space-between;
 		padding: 0 3px;
@@ -35,7 +35,7 @@
 		&:not(.transparent) { background-color: #e5e5e5; }
 		&.unfocused:not(.transparent) { background-color: #f6f6f6; }
 
-		.titlebar-controls {
+		.windowbar-controls {
 			&:hover {
 				svg {
 					opacity: 1 !important;
@@ -63,9 +63,9 @@
 			}
 		}
 
-		.titlebar-close,
-		.titlebar-minimize,
-		.titlebar-maximize {
+		.windowbar-close,
+		.windowbar-minimize,
+		.windowbar-maximize {
 			float: left;
 			width: 10px;
 			height: 10px;
@@ -74,7 +74,7 @@
 			line-height: 0;
 		}
 
-		.titlebar-close {
+		.windowbar-close {
 			border: 1px solid #e94343;
 			background-color: #ff5d5b;
 			margin-left: 6px;
@@ -93,7 +93,7 @@
 			}
 		}
 
-		.titlebar-minimize {
+		.windowbar-minimize {
 			border: 1px solid #e5a03a;
 			background-color: #ffbc45;
 
@@ -111,7 +111,7 @@
 			}
 		}
 
-		.titlebar-maximize {
+		.windowbar-maximize {
 			border: 1px solid #13ad3e;
 			background-color: #00c94f;
 			
@@ -147,26 +147,26 @@
 			}
 		}
 
-		&.unfocused .titlebar-controls:not(:hover) > * {
+		&.unfocused .windowbar-controls:not(:hover) > * {
 			background-color: #dcdcdc;
 			border-color: #d1d1d1;
 		}
 	}
 	
 	
-	&.tb-win {
+	&.wb-win {
 		justify-content: flex-end;
 		padding: 0;
 		
 		&:not(.transparent) { background-color: #fff; }
 		
-		&.unfocused .titlebar-controls:not(:hover) svg {
+		&.unfocused .windowbar-controls:not(:hover) svg {
 			opacity: 60%;
 		}
 
-		.titlebar-minimize,
-		.titlebar-maximize,
-		.titlebar-close {
+		.windowbar-minimize,
+		.windowbar-maximize,
+		.windowbar-close {
 			float: left;
 			width: 45px;
 			height: 29px;
@@ -186,7 +186,7 @@
 			}
 		}
 		
-		.titlebar-close svg polygon {
+		.windowbar-close svg polygon {
 			-webkit-transition: fill .2s;
 			-moz-transition: fill .2s;
 			-ms-transition: fill .2s;
@@ -195,22 +195,22 @@
 		}
 		
 		&.fullscreen {
-			.titlebar-minimize,
-			.titlebar-maximize,
-			.titlebar-close {
+			.windowbar-minimize,
+			.windowbar-maximize,
+			.windowbar-close {
 				height: 21px;
 				line-height: 21px;
 			}
 		}
 
-		&:not(.fullscreen) .titlebar-maximize svg.unmaximize-svg { display: none; }
-		&.fullscreen .titlebar-maximize svg.maximize-svg { display: none; }
+		&:not(.fullscreen) .windowbar-maximize svg.unmaximize-svg { display: none; }
+		&.fullscreen .windowbar-maximize svg.maximize-svg { display: none; }
 
-		.titlebar-minimize:hover,
-		.titlebar-maximize:hover {
+		.windowbar-minimize:hover,
+		.windowbar-maximize:hover {
 			background-color: #E5E5E5;
 		}
-		.titlebar-close:hover {
+		.windowbar-close:hover {
 			background-color: #E81123;
 			
 			svg polygon {

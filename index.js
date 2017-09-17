@@ -8,9 +8,9 @@ var classes = require('component-classes');
 var ALT = 18;
 
 var css = fs.readFileSync(path.join(__dirname, 'style.css'), 'utf-8');
-var html = fs.readFileSync(path.join(__dirname, 'titlebar.html'), 'utf-8');
+var html = fs.readFileSync(path.join(__dirname, 'windowbar.html'), 'utf-8');
 
-class Titlebar extends EventEmitter {
+class Windowbar extends EventEmitter {
 	constructor(options = {}){
 		super();
 		// Get Options
@@ -27,15 +27,15 @@ class Titlebar extends EventEmitter {
 			else this.options.style = 'generic';
 		}
 		
-		// Create Titlebar element
-		if (this.options.style === 'mac' || this.options.style === 'darwin') this.element = domify(html, document).querySelector('.tb-mac');
-		else if (this.options.style === 'win' || this.options.style === 'win32') this.element = domify(html, document).querySelector('.tb-win');
+		// Create Windowbar element
+		if (this.options.style === 'mac' || this.options.style === 'darwin') this.element = domify(html, document).querySelector('.wb-mac');
+		else if (this.options.style === 'win' || this.options.style === 'win32') this.element = domify(html, document).querySelector('.wb-win');
 		else if (this.options.style === 'generic') this.element = domify(html, document);
 		
 		// Register buttons
-		this.minimizeButton = this.element.querySelector('.titlebar-minimize');
-		this.maximizeButton = this.element.querySelector('.titlebar-maximize');
-		this.closeButton = this.element.querySelector('.titlebar-close');
+		this.minimizeButton = this.element.querySelector('.windowbar-minimize');
+		this.maximizeButton = this.element.querySelector('.windowbar-maximize');
+		this.closeButton = this.element.querySelector('.windowbar-close');
 		
 		// Draggable
 		if (this.options.draggable) classes(this.element).add('draggable');
@@ -86,7 +86,7 @@ class Titlebar extends EventEmitter {
 	};
 	
 	appendTo(context = document.body){
-		//defaultCss('titlebar', css);
+		//defaultCss('windowbar', css);
 		context.appendChild(this.element);
 		return this;
 	};
@@ -97,4 +97,4 @@ class Titlebar extends EventEmitter {
 	};
 }
 
-module.exports = Titlebar;
+module.exports = Windowbar;

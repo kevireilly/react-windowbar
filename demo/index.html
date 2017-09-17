@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Title bar demo</title>
+	<title>Windowbar demo</title>
 	<link rel="stylesheet" href="../style.css">
 	<style>
 	
@@ -21,7 +21,7 @@
 			};
 		};
 
-		var tm = new titlebar({'style':'mac', 'draggable':true, 'dblClickable':false})
+		var wm = new windowbar({'style':'mac', 'draggable':true, 'dblClickable':false})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
 			.on('fullscreen', log('fullscreen'))
@@ -30,7 +30,7 @@
 		
 		document.write('<br>');
 		
-		var tw = new titlebar({'style':'win', 'draggable':false, 'dblClickable':true})
+		var ww = new windowbar({'style':'win', 'draggable':false, 'dblClickable':true})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
 			.on('maximize', log('maximize'))
