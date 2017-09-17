@@ -1,6 +1,6 @@
 # windowbar
 
-Emulate OS X and Windows 10 window title bar. Forked from [kapetan/windowbar](https://github.com/kapetan/windowbar). See the [demo](http://katacarbix.xyz/windowbar/demo/index.html).
+Emulate OS X and Windows 10 window title bar. Forked from [kapetan/titlebar](https://github.com/kapetan/titlebar). See the [demo](http://katacarbix.xyz/windowbar/demo/index.html).
 
 ~~```npm install windowbar```~~
 
@@ -28,6 +28,6 @@ The initializer function accepts an options object with these properties:
 
 # To do
 
-* Make React compatible
-* Add generic title bar (similar to [hyper](http://hyper.is))
-* Slightly rename repo and publish to npm
+* Make React compatible version
+* Add generic style (similar to [hyper](http://hyper.is))
+* Publish to npm
