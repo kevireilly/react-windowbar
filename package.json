@@ -4,7 +4,8 @@
 	"description": "Emulated window controls",
 	"main": "index.js",
 	"scripts": {
-		"start": "grunt"
+		"start": "grunt",
+		"build": "grunt compass && grunt browserify"
 	},
 	"repository": {
 		"type": "git",
