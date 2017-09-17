@@ -12,18 +12,13 @@ Used with browserify, electron, or a similar environment. Use with plain javascr
 var titlebar = require('titlebar');
 
 var t = new titlebar({'style':'mac'})
+	// All the events it emits
 	.on('close', log('close'))
 	.on('minimize', log('minimize'))
 	.on('fullscreen', log('fullscreen'))
 	.on('maximize', log('maximize'))
+	// Returns a DOM object to put in your document
 	.appendTo(document.body);
-
-t.on('close', function(e) {
-	console.log('close');
-});
-
-// t.element exposes the root dom element
-t.element.appendChild(document.createElement('div'));
 ```
 
 The returned instance emits four events: `close`, `minimize`, `fullscreen`, and `maximize`. Note: `maximize` can also be triggered in the Mac style by alt-clicking fullscreen.

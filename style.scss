@@ -1,5 +1,7 @@
 .titlebar {
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	box-sizing: padding-box;
 	
 	* { box-sizing: inherit; }
@@ -130,10 +132,10 @@
 			}
 			
 			svg.exit-fullscreen-svg {
-				width: 8px;
-				height: 8px;
-				margin-top: 1px;
-				margin-left: 1px;
+				width: 10px;
+				height: 10px;
+				margin-top: 0;
+				margin-left: 0;
 				opacity: 0;
 				display: none;
 			}
