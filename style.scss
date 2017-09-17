@@ -1,7 +1,5 @@
 .titlebar {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	box-sizing: padding-box;
 	
 	* { box-sizing: inherit; }
@@ -30,15 +28,14 @@
 	
 	
 	&.tb-mac {
+		align-items: center;
+		justify-content: space-between;
 		padding: 0 3px;
 		
 		&:not(.transparent) { background-color: #e5e5e5; }
 		&.unfocused:not(.transparent) { background-color: #f6f6f6; }
 
 		.titlebar-controls {
-			float: left;
-			text-align: left;
-
 			&:hover {
 				svg {
 					opacity: 1 !important;
@@ -158,23 +155,13 @@
 	
 	
 	&.tb-win {
-		//display: block;
-		//height: 30px;
+		justify-content: flex-end;
 		padding: 0;
 		
 		&:not(.transparent) { background-color: #fff; }
 		
-		/*&.fullscreen {
-			height: 22px;
-		}*/
-		
 		&.unfocused .titlebar-controls:not(:hover) svg {
 			opacity: 60%;
-		}
-
-		.titlebar-controls {
-			float: right;
-			text-align: left;
 		}
 
 		.titlebar-minimize,
