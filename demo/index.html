@@ -21,7 +21,7 @@
 			};
 		};
 
-		var tm = new titlebar({'style':'mac', 'draggable':true, 'dblClickable':true})
+		var tm = new titlebar({'style':'mac', 'draggable':true, 'dblClickable':false})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
 			.on('fullscreen', log('fullscreen'))
@@ -30,7 +30,7 @@
 		
 		document.write('<br>');
 		
-		var tw = new titlebar({'style':'win', 'draggable':true, 'dblClickable':true})
+		var tw = new titlebar({'style':'win', 'draggable':false, 'dblClickable':true})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
 			.on('maximize', log('maximize'))

@@ -1,5 +1,8 @@
 .titlebar {
 	display: block;
+	box-sizing: padding-box;
+	
+	* { box-sizing: inherit; }
 	
 	&::after {
 		content: ' ';

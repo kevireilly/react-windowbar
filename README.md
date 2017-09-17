@@ -1,8 +1,8 @@
 # titlebar
 
-Emulate OS X and Windows 10 window title bar (plus a generic style). Forked from [kapetan/titlebar](https://github.com/kapetan/titlebar). See the [demo](http://katacarbix.xyz/titlebar/demo/index.html).
+Emulate OS X and Windows 10 window title bar. Forked from [kapetan/titlebar](https://github.com/kapetan/titlebar). See the [demo](http://katacarbix.xyz/titlebar/demo/index.html).
 
-	~~npm install titlebar~~
+~~```npm install titlebar```~~
 
 # Usage
 
@@ -11,8 +11,12 @@ Used with browserify, electron, or a similar environment. Use with plain javascr
 ```javascript
 var titlebar = require('titlebar');
 
-var t = titlebar();
-t.appendTo(document.body);
+var t = new titlebar({'style':'mac'})
+	.on('close', log('close'))
+	.on('minimize', log('minimize'))
+	.on('fullscreen', log('fullscreen'))
+	.on('maximize', log('maximize'))
+	.appendTo(document.body);
 
 t.on('close', function(e) {
 	console.log('close');
@@ -22,17 +26,16 @@ t.on('close', function(e) {
 t.element.appendChild(document.createElement('div'));
 ```
 
-The returned instance emits four events: `close`, `minimize`, `fullscreen` (each corresponding to one of the stoplight buttons) and `maximize` when double clicking on the title bar area, or holding down alt key and clicking `fullscreen`.
+The returned instance emits four events: `close`, `minimize`, `fullscreen`, and `maximize`. Note: `maximize` can also be triggered in the Mac style by alt-clicking fullscreen.
 
-The initializer function accepts an options object.
+The initializer function accepts an options object with these properties:
 
-* `draggable` (default `true`): Disable the [-webkit-app-region](https://developer.chrome.com/apps/app_window) CSS property on the root element. Allows a frameless windows to be dragged in an `electron` application.
+* `draggable` (default `true`): Disable the [-webkit-app-region](https://developer.chrome.com/apps/app_window) CSS property on the root element. Allows frameless windows to be dragged in an `electron` application.
 * `dblClickable` (default `true`): Allows double clicking titlebar to trigger maximize event.
 * `os` (defaults to current OS, or `generic` if unrecognized): Possible values are `mac`, `win`, or `generic`.
 
 # To do
 
 * Make React compatible
-* Add generic title bar (similar to [hyper](http://hyper.is)) to default to
-* Rename the `os` option to `style`
+* Add generic title bar (similar to [hyper](http://hyper.is))
 * Slightly rename repo and publish to npm

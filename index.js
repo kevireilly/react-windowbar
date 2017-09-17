@@ -17,8 +17,8 @@ class Titlebar extends EventEmitter {
 		this.options = {};
 		this.options.style = options.style;
 		this.options.transparent = options.transparent;
-		this.options.draggable = options.draggable;
-		this.options.dblClickable = options.dblClickable;
+		this.options.draggable = "draggable" in options ? options.draggable : true;
+		this.options.dblClickable = "dblClickable" in options ? options.dblClickable : true;
 		
 		// Set proper style
 		if (!['mac','win','generic'].includes(this.options.style)){
