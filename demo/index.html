@@ -2,30 +2,40 @@
 <html>
 <head>
 	<title>Title bar demo</title>
+	<link rel="stylesheet" href="../style.css">
+	<style>
+	
+	body {
+		background: #ccc;
+	}
+	
+	</style>
 </head>
 <body>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript">
-		var log = function(name) {
-			return function(e) {
+		
+		var log = function(name){
+			return function(e){
 				console.log(name, e);
 			};
 		};
 
-		var tm = titlebar({'os':'mac'})
-			.appendTo(document.body)
+		var tm = new titlebar({'style':'mac', 'draggable':true, 'dblClickable':true})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
 			.on('fullscreen', log('fullscreen'))
-			.on('maximize', log('maximize'));
-
+			.on('maximize', log('maximize'))
+			.appendTo(document.body);
+		
 		document.write('<br>');
-
-		var tw = titlebar({'os':'win'})
-			.appendTo(document.body)
+		
+		var tw = new titlebar({'style':'win', 'draggable':true, 'dblClickable':true})
 			.on('close', log('close'))
 			.on('minimize', log('minimize'))
-			.on('maximize', log('maximize'));
+			.on('maximize', log('maximize'))
+			.appendTo(document.body);
+		
 	</script>
 </body>
 </html>

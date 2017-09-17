@@ -1,101 +1,100 @@
-var events = require('events');
-var util = require('util');
+var EventEmitter = require('events');
 var fs = require('fs');
-var defaultcss = require('defaultcss');
+var path = require('path');
+var defaultCss = require('defaultcss');
 var domify = require('domify');
-var $ = require('dombo');
+var classes = require('component-classes');
 
 var ALT = 18;
 
-var $window = $(window);
-var styleMac = fs.readFileSync(__dirname + '/mac.css', 'utf-8');
-var htmlMac = fs.readFileSync(__dirname + '/mac.html', 'utf-8');
-var styleWin = fs.readFileSync(__dirname + '/win.css', 'utf-8');
-var htmlWin = fs.readFileSync(__dirname + '/win.html', 'utf-8');
+var css = fs.readFileSync(path.join(__dirname, 'style.css'), 'utf-8');
+var html = fs.readFileSync(path.join(__dirname, 'titlebar.html'), 'utf-8');
 
-var TitleBar = function(options) {
-	if(!(this instanceof TitleBar)) return new TitleBar(options);
-
-	events.EventEmitter.call(this);
-	this._options = options || {};
-
-	if (this._options.os !== 'mac' && this._options.os !== 'win'){
-		if (process.platform === 'darwin') this._options.os = 'mac';
-		else if (process.platform === 'win32') this._options.os = 'win';
-		else {
-			console.warn('No supported OS option was given. Using OS X style as default.')
-			this._options.os = 'mac';
+class Titlebar extends EventEmitter {
+	constructor(options = {}){
+		super();
+		// Get Options
+		this.options = {};
+		this.options.style = options.style;
+		this.options.transparent = options.transparent;
+		this.options.draggable = options.draggable;
+		this.options.dblClickable = options.dblClickable;
+		
+		// Set proper style
+		if (!['mac','win','generic'].includes(this.options.style)){
+			if (this.options.style === 'darwin' || platform.system === 'darwin') this.options.style = 'mac';
+			else if (this.options.style === 'win32' || platform.system === 'win32') this.options.style = 'win';
+			else this.options.style = 'generic';
+		}
+		
+		// Create Titlebar element
+		if (this.options.style === 'mac' || this.options.style === 'darwin') this.element = domify(html, document).querySelector('.tb-mac');
+		else if (this.options.style === 'win' || this.options.style === 'win32') this.element = domify(html, document).querySelector('.tb-win');
+		else if (this.options.style === 'generic') this.element = domify(html, document);
+		
+		// Register buttons
+		this.minimizeButton = this.element.querySelector('.titlebar-minimize');
+		this.maximizeButton = this.element.querySelector('.titlebar-maximize');
+		this.closeButton = this.element.querySelector('.titlebar-close');
+		
+		// Draggable
+		if (this.options.draggable) classes(this.element).add('draggable');
+		// Transparent
+		if (this.options.transparent) classes(this.element).add('transparent');
+		
+		// Add click events
+		this.element.addEventListener('dblclick', event => this.onDblClick(event));
+		this.minimizeButton.addEventListener('click', event => this.clickMinimize(event));
+		this.maximizeButton.addEventListener('click', event => this.clickMaximize(event));
+		this.closeButton.addEventListener('click', event => this.clickClose(event));
+		
+		// Show maximize svg while holding alt (mac only)
+		if (this.options.style === 'mac'){
+			var self = this;
+			window.addEventListener('keydown', function(e) {
+				if(e.keyCode === ALT && !classes(self.element).has('fullscreen')) classes(self.element).add('alt');
+			});
+			window.addEventListener('keyup', function(e) {
+				if(e.keyCode === ALT) classes(self.element).remove('alt');
+			});
 		}
 	}
 	
-	var html = (this._options.os === 'win') ? htmlWin : htmlMac;
-	var element = domify(html);
-	var $element = $(element);
-	this.element = element;
-
-	if(this._options.draggable !== false) $element.addClass('webkit-draggable');
-
-	var self = this;
-	var close = $('.titlebar-close', element)[0];
-	var minimize = $('.titlebar-minimize', element)[0];
-	var maximize = $('.titlebar-maximize', element)[0];
-	var fullscreen = $('.titlebar-fullscreen', element)[0];
-
-	var os = this._options.os;
-
-	$element.on('click', function(e) {
-		var target = e.target;
-		if(close.contains(target)) self.emit('close', e);
-		else if(minimize.contains(target)) self.emit('minimize', e);
-		else if (os === 'mac'){
-			if(fullscreen.contains(target)) {
-				if(e.altKey) self.emit('maximize', e);
-				else self.emit('fullscreen', e);
+	clickClose(e){ this.emit('close', e); };
+	
+	clickMinimize(e){ this.emit('minimize', e); };
+	
+	clickMaximize(e){
+		if (this.options.style === 'mac'){
+			if (e.altKey && !classes(this.element).has('fullscreen')){ this.emit('maximize', e); }
+			else {
+				classes(this.element).toggle('fullscreen');
+				this.emit('fullscreen', e);
 			}
+		} else {
+			classes(this.element).toggle('fullscreen');
+			this.emit('maximize', e);
 		}
-		else if (os === 'win'){
-			if(maximize.contains(target)) {
-				$element.toggleClass('maximized');
-				self.emit('maximize', e);
-			}
+	};
+	
+	onDblClick(e){
+		e.preventDefault;
+		if (this.options.dblClickable && !(this.minimizeButton.contains(e.target) || this.maximizeButton.contains(e.target) || this.closeButton.contains(e.target))){
+			this.clickMaximize(e);
+			console.log('dblclick', e);
 		}
-	});
+	};
+	
+	appendTo(context = document.body){
+		//defaultCss('titlebar', css);
+		context.appendChild(this.element);
+		return this;
+	};
+	
+	destroy(){
+		parent.removeChild(this.element);
+		return this;
+	};
+}
 
-	$element.on('dblclick', function(e) {
-		var target = e.target;
-		if(close.contains(target) || minimize.contains(target) || (os === 'mac' && fullscreen.contains(target)) || (os === 'win' && maximize.contains(target))) return;
-		self.emit('maximize', e);
-	});
-};
-
-util.inherits(TitleBar, events.EventEmitter);
-
-TitleBar.prototype.appendTo = function(target) {
-	var style = (this._options.os === 'win') ? styleWin : styleMac;
-
-	if(typeof target === 'string') target = $(target)[0];
-	if(this._options.style !== false) defaultcss('titlebar', style);
-
-	var $element = $(this.element);
-
-	$window.on('keydown', this._onkeydown = function(e) {
-		if(e.keyCode === ALT) $element.addClass('alt');
-	});
-
-	$window.on('keyup', this._onkeyup = function(e) {
-		if(e.keyCode === ALT) $element.removeClass('alt');
-	});
-
-	target.appendChild(this.element);
-	return this;
-};
-
-TitleBar.prototype.destroy = function() {
-	var parent = this.element.parentNode;
-	if(parent) parent.removeChild(this.element);
-	$window.off('keydown', this._onkeydown);
-	$window.off('keyup', this._onkeyup);
-	return this;
-};
-
-module.exports = TitleBar;
+module.exports = Titlebar;

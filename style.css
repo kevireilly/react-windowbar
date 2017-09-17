@@ -1,0 +1,231 @@
+/* line 1, style.scss */
+.titlebar {
+  display: block;
+}
+/* line 4, style.scss */
+.titlebar::after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+/* line 10, style.scss */
+.titlebar.draggable {
+  -webkit-app-region: drag;
+}
+/* line 13, style.scss */
+.titlebar.draggable .titlebar-minimize,
+.titlebar.draggable .titlebar-maximize,
+.titlebar.draggable .titlebar-close {
+  -webkit-app-region: no-drag;
+}
+/* line 20, style.scss */
+.titlebar .titlebar-controls::after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+/* line 27, style.scss */
+.titlebar.tb-mac {
+  padding: 0 3px;
+}
+/* line 30, style.scss */
+.titlebar.tb-mac:not(.transparent) {
+  background-color: #e5e5e5;
+}
+/* line 31, style.scss */
+.titlebar.tb-mac.unfocused:not(.transparent) {
+  background-color: #f6f6f6;
+}
+/* line 33, style.scss */
+.titlebar.tb-mac .titlebar-controls {
+  float: left;
+  text-align: left;
+}
+/* line 38, style.scss */
+.titlebar.tb-mac .titlebar-controls:hover svg {
+  opacity: 1 !important;
+}
+/* line 45, style.scss */
+.titlebar.tb-mac.alt svg.fullscreen-svg {
+  display: none;
+}
+/* line 49, style.scss */
+.titlebar.tb-mac.alt svg.maximize-svg {
+  display: block !important;
+}
+/* line 55, style.scss */
+.titlebar.tb-mac.fullscreen svg.fullscreen-svg {
+  display: none;
+}
+/* line 59, style.scss */
+.titlebar.tb-mac.fullscreen svg.exit-fullscreen-svg {
+  display: block !important;
+}
+/* line 64, style.scss */
+.titlebar.tb-mac .titlebar-close,
+.titlebar.tb-mac .titlebar-minimize,
+.titlebar.tb-mac .titlebar-maximize {
+  float: left;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 6px 4px;
+  line-height: 0;
+}
+/* line 75, style.scss */
+.titlebar.tb-mac .titlebar-close {
+  border: 1px solid #e94343;
+  background-color: #ff5d5b;
+  margin-left: 6px;
+}
+/* line 80, style.scss */
+.titlebar.tb-mac .titlebar-close:active {
+  border-color: #b43737;
+  background-color: #c64845;
+}
+/* line 85, style.scss */
+.titlebar.tb-mac .titlebar-close svg {
+  width: 6px;
+  height: 6px;
+  margin-top: 2px;
+  margin-left: 2px;
+  opacity: 0;
+}
+/* line 94, style.scss */
+.titlebar.tb-mac .titlebar-minimize {
+  border: 1px solid #e5a03a;
+  background-color: #ffbc45;
+}
+/* line 98, style.scss */
+.titlebar.tb-mac .titlebar-minimize:active {
+  border-color: #b07b2e;
+  background-color: #c38e34;
+}
+/* line 103, style.scss */
+.titlebar.tb-mac .titlebar-minimize svg {
+  width: 8px;
+  height: 8px;
+  margin-top: 1px;
+  margin-left: 1px;
+  opacity: 0;
+}
+/* line 112, style.scss */
+.titlebar.tb-mac .titlebar-maximize {
+  border: 1px solid #13ad3e;
+  background-color: #00c94f;
+}
+/* line 116, style.scss */
+.titlebar.tb-mac .titlebar-maximize:active {
+  border-color: #138532;
+  background-color: #009a3c;
+}
+/* line 121, style.scss */
+.titlebar.tb-mac .titlebar-maximize svg.fullscreen-svg {
+  width: 6px;
+  height: 6px;
+  margin-top: 2px;
+  margin-left: 2px;
+  opacity: 0;
+}
+/* line 129, style.scss */
+.titlebar.tb-mac .titlebar-maximize svg.exit-fullscreen-svg {
+  width: 8px;
+  height: 8px;
+  margin-top: 1px;
+  margin-left: 1px;
+  opacity: 0;
+  display: none;
+}
+/* line 138, style.scss */
+.titlebar.tb-mac .titlebar-maximize svg.maximize-svg {
+  width: 8px;
+  height: 8px;
+  margin-top: 1px;
+  margin-left: 1px;
+  opacity: 0;
+  display: none;
+}
+/* line 148, style.scss */
+.titlebar.tb-mac.unfocused .titlebar-controls:not(:hover) > * {
+  background-color: #dcdcdc;
+  border-color: #d1d1d1;
+}
+/* line 155, style.scss */
+.titlebar.tb-win {
+  padding: 0;
+  /*&.fullscreen {
+  	height: 22px;
+  }*/
+}
+/* line 160, style.scss */
+.titlebar.tb-win:not(.transparent) {
+  background-color: #fff;
+}
+/* line 166, style.scss */
+.titlebar.tb-win.unfocused .titlebar-controls:not(:hover) svg {
+  opacity: 60%;
+}
+/* line 170, style.scss */
+.titlebar.tb-win .titlebar-controls {
+  float: right;
+  text-align: left;
+}
+/* line 175, style.scss */
+.titlebar.tb-win .titlebar-minimize,
+.titlebar.tb-win .titlebar-maximize,
+.titlebar.tb-win .titlebar-close {
+  float: left;
+  width: 45px;
+  height: 29px;
+  margin: 0 0 1px 1px;
+  text-align: center;
+  line-height: 29px;
+  -webkit-transition: background-color .2s;
+  -moz-transition: background-color .2s;
+  -ms-transition: background-color .2s;
+  -o-transition: background-color .2s;
+  transition: background-color .2s;
+}
+/* line 191, style.scss */
+.titlebar.tb-win .titlebar-minimize svg,
+.titlebar.tb-win .titlebar-maximize svg,
+.titlebar.tb-win .titlebar-close svg {
+  width: 10px;
+  height: 10px;
+}
+/* line 197, style.scss */
+.titlebar.tb-win .titlebar-close svg polygon {
+  -webkit-transition: fill .2s;
+  -moz-transition: fill .2s;
+  -ms-transition: fill .2s;
+  -o-transition: fill .2s;
+  transition: fill .2s;
+}
+/* line 206, style.scss */
+.titlebar.tb-win.fullscreen .titlebar-minimize,
+.titlebar.tb-win.fullscreen .titlebar-maximize,
+.titlebar.tb-win.fullscreen .titlebar-close {
+  height: 21px;
+  line-height: 21px;
+}
+/* line 214, style.scss */
+.titlebar.tb-win:not(.fullscreen) .titlebar-maximize svg.unmaximize-svg {
+  display: none;
+}
+/* line 215, style.scss */
+.titlebar.tb-win.fullscreen .titlebar-maximize svg.maximize-svg {
+  display: none;
+}
+/* line 217, style.scss */
+.titlebar.tb-win .titlebar-minimize:hover,
+.titlebar.tb-win .titlebar-maximize:hover {
+  background-color: #E5E5E5;
+}
+/* line 221, style.scss */
+.titlebar.tb-win .titlebar-close:hover {
+  background-color: #E81123;
+}
+/* line 224, style.scss */
+.titlebar.tb-win .titlebar-close:hover svg polygon {
+  fill: #fff;
+}
