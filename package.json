@@ -1,17 +1,18 @@
 {
-	"name": "windowbar",
-	"version": "1.6.2",
-	"description": "Emulated window controls",
-	"main": "index.js",
+	"name": "windowbar-react",
+	"version": "1.6.0",
+	"description": "React component that emulates window controls",
+	"main": "dist/index.js",
 	"scripts": {
 		"start": "grunt",
 		"build": "grunt compass && grunt browserify"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/katacarbix/windowbar"
+		"url": "https://github.com/katacarbix/windowbar/tree/windowbar-react"
 	},
 	"keywords": [
+		"react",
 		"osx",
 		"window",
 		"controls",
@@ -22,18 +23,23 @@
 	"bugs": {
 		"url": "https://github.com/katacarbix/windowbar/issues"
 	},
-	"homepage": "https://github.com/katacarbix/windowbar",
+	"homepage": "https://github.com/katacarbix/windowbar/tree/windowbar-react",
 	"dependencies": {
-		"brfs": "^1.4.0",
-		"component-classes": "^1.2.6",
-		"defaultcss": "^1.1.1",
-		"domify": "^1.3.3"
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1"
 	},
 	"devDependencies": {
-		"browserify": "^9.0.8",
+		"babel-core": "^6.26.0",
+		"babel-preset-env": "^1.6.0",
+		"babel-preset-react": "^6.24.1",
+		"babelify": "^7.3.0",
+		"browserify": "^14.4.0",
+		"classnames": "^2.2.5",
 		"grunt": "^1.0.1",
+		"grunt-babel": "^7.0.0",
 		"grunt-browserify": "^5.2.0",
 		"grunt-contrib-compass": "^1.1.1",
-		"grunt-contrib-watch": "^1.0.0"
+		"grunt-contrib-watch": "^1.0.0",
+		"jsx-control-statements": "^3.2.6"
 	}
 }

@@ -4,26 +4,26 @@ module.exports = function(grunt){
 		compass: {
 			dist: {
 				options: {
-					sassDir: '.',
-					cssDir: '.'
+					sassDir: './src',
+					cssDir: './dist',
+					outputStyle: 'compressed'
 				}
 			}
 		},
 		browserify: {
 			options: {
 				debug: true,
-				// transform: ['babelify'],
-				transform: [
-					'brfs'
-				],
-				extensions: '.js',
+				transform: ['babelify'],
+				extensions: ['.jsx'],
 				browserifyOptions: {
-					standalone: 'windowbar'
+					standalone: 'Windowbar'
 				}
 			},
 			default: {
-				src: ['index.js'],
-				dest: 'demo/index.js'
+				files: { 'dist/index.js': ['src/index.jsx'] }
+			},
+			demo: {
+				files: { 'demo/demo.js': ['demo/demo.jsx'] }
 			}
 		},
 		watch: {
@@ -32,12 +32,13 @@ module.exports = function(grunt){
 				tasks: ['compass']
 			},
 			browserify: {
-				files: ['./*.js','./*.html'],
+				files: ['**/*.jsx?','**/*.html'],
 				tasks: ['browserify']
 			}
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.registerTask('default',['watch']);
