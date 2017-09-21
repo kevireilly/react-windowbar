@@ -1,12 +1,12 @@
-# windowbar
+# windowbar-react
 
 Emulate OS X and Windows 10 window title bar. Forked from [kapetan/titlebar](https://github.com/kapetan/titlebar). See the [demo](http://katacarbix.xyz/windowbar/demo/index.html).
 
-```npm install windowbar-react```
+`npm install windowbar-react`
 
 # Usage
 
-Used with browserify, electron, or a similar environment. Use as a React component:
+For use with browserify, electron, or a similar environment. As a React component:
 
 ```javascript
 import Windowbar from 'windowbar-react';
