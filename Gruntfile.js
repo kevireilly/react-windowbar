@@ -20,10 +20,20 @@ module.exports = function(grunt){
 				}
 			},
 			default: {
-				files: { 'dist/index.js': ['src/index.jsx'] }
+				files: {
+					'demo/demo.js': 'src/demo.jsx'
+				}
+			}
+		},
+		babel: {
+			options: {
+				sourceMap: true
 			},
-			demo: {
-				files: { 'demo/demo.js': ['demo/demo.jsx'] }
+			dist: {
+				files: {
+					'dist/Windowbar.js': 'src/Windowbar.jsx',
+					'dist/index.js': 'src/index.jsx'
+				}
 			}
 		},
 		watch: {
@@ -32,8 +42,12 @@ module.exports = function(grunt){
 				tasks: ['compass']
 			},
 			browserify: {
-				files: ['**/*.jsx?','**/*.html'],
+				files: ['src/demo.js','demo/index.html'],
 				tasks: ['browserify']
+			},
+			babel: {
+				files: ['src/*.jsx?'],
+				tasks: ['babel']
 			}
 		}
 	});

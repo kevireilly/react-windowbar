@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Windowbar from '../src/index.jsx';
+import Windowbar from './Windowbar.jsx';
 
 class WindowbarDemo extends React.Component {
 	render(){
