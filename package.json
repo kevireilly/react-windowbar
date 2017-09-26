@@ -1,11 +1,11 @@
 {
 	"name": "windowbar-react",
-	"version": "1.6.1",
+	"version": "1.6.2",
 	"description": "React component that emulates window controls",
 	"main": "dist/index.js",
 	"scripts": {
 		"start": "grunt",
-		"build": "grunt compass && grunt browserify"
+		"build": "grunt compass browserify babel"
 	},
 	"repository": {
 		"type": "git",

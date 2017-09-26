@@ -26,6 +26,17 @@ class WindowbarDemo extends React.Component {
 					onMaximize={() => console.log('maximize')}
 				/>
 				
+				<br />
+				
+				<Windowbar
+					style="win"
+					dark={true}
+					draggable={true}
+					onClose={() => console.log('close')}
+					onMinimize={() => console.log('minimize')}
+					onMaximize={() => console.log('maximize')}
+				/>
+				
 			</div>
 		);
 	}

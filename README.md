@@ -25,13 +25,14 @@ import Windowbar from 'windowbar-react';
 />
 ```
 
-The returned instance emits four events: `close`, `minimize`, `fullscreen`, and `maximize`. Note: `maximize` can also be triggered in the Mac style by alt-clicking fullscreen.
+The component takes four event handlers: `onClose`, `onMinimize`, `onMaximize`, and `onFullscreen`. Note: `onMaximize` can also be triggered in the Mac style by alt-clicking the full screen button.
 
-The initializer function accepts options as attributes with these names:
+The component accepts options as attributes with these names:
 
 * `draggable` (default `true`): Disable the [-webkit-app-region](https://developer.chrome.com/apps/app_window) CSS property on the root element. Allows frameless windows to be dragged in an `electron` application.
 * `dblClickable` (default `true`): Allows double clicking windowbar to trigger maximize event.
 * `style` (defaults to current OS, or `generic` if unrecognized): Possible values are `mac`, `win`, or `generic`.
+* `dark` (default `false`): Dark theme for Windows.
 
 # To do
 
