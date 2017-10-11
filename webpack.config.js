@@ -1,36 +1,44 @@
-/* jshint node: true */
+var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-	context: path.join(__dirname),
 	entry: './lib/index.js',
-
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, 'dist/'),
 		filename: 'index.js',
-		libraryTarget: 'umd',
-		library: 'Windowbar'
+		library: 'Windowbar',
+		libraryTarget: 'umd'
 	},
-
-	externals: {
-	 'react': 'var React',
-	 'react/addons': 'var React'
-	},
-
 	module: {
 		loaders: [
 			{
 				test: /\.scss$/,
-				// Query parameters are passed to node-sass
 				loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&' +
-					'includePaths[]=' + (path.resolve(__dirname, './bower_components')) + '&' +
 					'includePaths[]=' + (path.resolve(__dirname, './node_modules'))
 			},
 			{
-				test: /(\.js)|(\.jsx)$/,
-				exclude: /(node_modules|bower_components)/,
-				loader: 'babel-loader'
+				test: /\.jsx?$/,
+				loader: 'babel-loader',
+				exclude: [
+					'/node_modules/',
+				],
+				query: {
+					presets: ['env', 'react']
+				}
 			}
 		]
-	}
+	},
+	plugins: [
+		new webpack.optimize.UglifyJsPlugin
+	],
+	externals: [
+		{
+			react: {
+				root: 'React',
+				commonjs2: 'react',
+				commonjs: 'react',
+				amd: 'react'
+			}
+		}
+	],
 };
