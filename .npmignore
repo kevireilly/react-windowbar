@@ -1,0 +1,4 @@
+lib/
+demo/
+webpack.config.js
+.babelrc

@@ -1,20 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import platform from 'platform';
 
 import './windowbar.scss';
 
-const ALT = 18;
-const defaultProps = {
-	style: 'mac',
-	transparent: false,
-	draggable: true,
-	dark: false,
-	dblClickable: true,
+const getPlatformName = () => {
+	let os = platform.os.family || '';
+	os = os.toLowerCase().replace(/ /g, '');
+	if (/\bwin/.test(os)) {
+		os = 'windows';
+	} else if (/darwin|osx/.test(os)) {
+		os = 'mac';
+	} else {
+		os = 'other';
+	}
+	return os;
 }
 
+const ALT = 18;
+
 const Windowbar = React.createClass({
-	defaultProps: defaultProps,
+	defaultProps: {
+		style: null,
+		transparent: false,
+		draggable: true,
+		dark: false,
+		dblClickable: true,
+	},
 	
 	getInitialState(){
 		return {
@@ -72,7 +85,7 @@ const Windowbar = React.createClass({
 	handleDblClick(e){
 		e.preventDefault;
 		e.stopPropagation();
-    	e.nativeEvent.stopImmediatePropagation();
+		e.nativeEvent.stopImmediatePropagation();
 		
 		if (this.state.dblClickable){
 			this.handleMaximize(e);
@@ -80,6 +93,8 @@ const Windowbar = React.createClass({
 	},
 	
 	render(){
+		var style = this.props.style || getPlatformName();
+		
 		var {
 			draggable,
 			transparent,
@@ -91,8 +106,8 @@ const Windowbar = React.createClass({
 		
 		var classes = classNames({
 			windowbar: true,
-			'wb-mac': this.props.style === 'mac',
-			'wb-win': this.props.style === 'win',
+			'wb-mac': style === 'mac',
+			'wb-win': style === 'win',
 			draggable,
 			transparent,
 			dark,
@@ -100,7 +115,7 @@ const Windowbar = React.createClass({
 			alt: keyAltDown,
 		});
 		
-		if (this.props.style === 'mac'){
+		if (style === 'mac'){
 			return (
 				<div className={classes} onDoubleClick={this.handleDblClick}>
 					<div className="windowbar-controls">
@@ -131,7 +146,7 @@ const Windowbar = React.createClass({
 				</div>
 				
 			);
-		} else if (this.props.style === 'win'){
+		} else if (style === 'win'){
 			return (
 			
 				<div className={classes} onDoubleClick={this.handleDblClick}>
@@ -163,19 +178,22 @@ const Windowbar = React.createClass({
 				</div>
 			
 			);
+		} else {
+			return ( <div>Generic windowbar coming soon</div> );
 		}
 	}
 });
 
 Windowbar.propTypes = {
+	style: PropTypes.string,
 	transparent: PropTypes.bool,
 	dark: PropTypes.bool,
 	draggable: PropTypes.bool,
 	dblClickable: PropTypes.bool,
-	onClose: PropTypes.func.isRequired,
-	onMinimize: PropTypes.func.isRequired,
-	onMaximize: PropTypes.func.isRequired,
-	onFullscreen: ( process.platform === 'darwin' ? PropTypes.func.isRequired : PropTypes.func )
+	onClose: PropTypes.func,
+	onMinimize: PropTypes.func,
+	onMaximize: PropTypes.func,
+	onFullscreen: PropTypes.func
 };
 
 module.exports = Windowbar;
