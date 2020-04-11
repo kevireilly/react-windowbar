@@ -1,7 +1,7 @@
 {
-	"name": "windowbar-react",
-	"version": "1.6.5",
-	"description": "React component that emulates window controls",
+	"name": "react-windowbar",
+	"version": "2.0.0",
+	"description": "React component that emulates the macOS and Windows 10 window title bar",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "webpack -p",
@@ -9,12 +9,13 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/katacarbix/windowbar/tree/windowbar-react"
+		"url": "git+https://github.com/kevireilly/react-windowbar"
 	},
 	"keywords": [
 		"react",
 		"react-component",
 		"osx",
+		"macos",
 		"window",
 		"controls",
 		"titlebar",
@@ -22,9 +23,9 @@
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/katacarbix/windowbar/issues"
+		"url": "https://github.com/kevireilly/react-windowbar/issues"
 	},
-	"homepage": "https://github.com/katacarbix/windowbar/tree/windowbar-react",
+	"homepage": "https://github.com/kevireilly/react-windowbar",
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
@@ -41,6 +42,7 @@
 	"dependencies": {
 		"babel-runtime": "^6.26.0",
 		"platform": "^1.3.4",
-		"react": "^16.0.0"
+		"react": "16.9.0",
+		"react-dom": "16.9.0"
 	}
 }

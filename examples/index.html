@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-windowbar demo</title>
+	<style type="text/css">
+		body {
+			background: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.9.0/umd/react.production.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.9.0/umd/react-dom.production.min.js" type="text/javascript"></script>
+	<script src="../dist/index.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		/* jshint undef:false */
+		ReactDOM.render(
+			React.createElement('div', {},
+				React.createElement(Windowbar.default, {
+					style: 'mac',
+					draggable: true,
+					onClose: () => console.log('close'),
+					onDoubleClick: () => console.log('double click'),
+					onMinimize: () => console.log('minimize'),
+					onMaximize: () => console.log('maximize'),
+					onFullscreen: () => console.log('fullscreen')
+				}),
+				React.createElement('br'),
+				React.createElement(Windowbar.default, {
+					style: 'windows',
+					draggable: true,
+					onClose: () => console.log('close'),
+					onDoubleClick: () => console.log('double click'),
+					onMinimize: () => console.log('minimize'),
+					onMaximize: () => console.log('maximize'),
+					onFullscreen: () => console.log('fullscreen')
+				}),
+				React.createElement('br'),
+				React.createElement(Windowbar.default, {
+					style: 'windows',
+					dark: true,
+					draggable: true,
+					onClose: () => console.log('close'),
+					onDoubleClick: () => console.log('double click'),
+					onMinimize: () => console.log('minimize'),
+					onMaximize: () => console.log('maximize'),
+					onFullscreen: () => console.log('fullscreen')
+				}),
+				React.createElement('br'),
+				React.createElement(Windowbar.default, {
+					style: 'generic',
+					draggable: true,
+					onClose: () => console.log('close'),
+					onDoubleClick: () => console.log('double click'),
+					onMinimize: () => console.log('minimize'),
+					onMaximize: () => console.log('maximize'),
+					onFullscreen: () => console.log('fullscreen')
+				})
+			),
+			document.getElementById('root')
+		);
+	</script>
+</body>
+</html>
